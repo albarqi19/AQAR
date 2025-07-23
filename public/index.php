@@ -11,20 +11,11 @@ if (empty($_ENV['APP_KEY']) || $_ENV['APP_KEY'] === 'base64:GENERATED_KEY_WILL_B
     putenv('APP_KEY=base64:1jJ7lx/yprzypdaIzSD6nk1GaImlQuKx4QE2+TqQT2Q=');
 }
 
-// إصلاح إعدادات قاعدة البيانات MySQL
-$_ENV['DB_CONNECTION'] = 'mysql';
-$_ENV['DB_HOST'] = $_ENV['MYSQLHOST'] ?? $_ENV['DB_HOST'] ?? 'localhost';
-$_ENV['DB_PORT'] = $_ENV['MYSQLPORT'] ?? $_ENV['DB_PORT'] ?? '3306';
-$_ENV['DB_DATABASE'] = $_ENV['MYSQLDATABASE'] ?? $_ENV['DB_DATABASE'] ?? 'property_management';
-$_ENV['DB_USERNAME'] = $_ENV['MYSQLUSER'] ?? $_ENV['DB_USERNAME'] ?? 'root';
-$_ENV['DB_PASSWORD'] = $_ENV['MYSQLPASSWORD'] ?? $_ENV['DB_PASSWORD'] ?? '';
-
-putenv('DB_CONNECTION=mysql');
-putenv('DB_HOST=' . $_ENV['DB_HOST']);
-putenv('DB_PORT=' . $_ENV['DB_PORT']);
-putenv('DB_DATABASE=' . $_ENV['DB_DATABASE']);
-putenv('DB_USERNAME=' . $_ENV['DB_USERNAME']);
-putenv('DB_PASSWORD=' . $_ENV['DB_PASSWORD']);
+// إصلاح إعدادات قاعدة البيانات SQLite
+$_ENV['DB_CONNECTION'] = 'sqlite';
+$_ENV['DB_DATABASE'] = '/tmp/database.sqlite';
+putenv('DB_CONNECTION=sqlite');
+putenv('DB_DATABASE=/tmp/database.sqlite');
 
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
