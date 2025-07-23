@@ -1,0 +1,52 @@
+{
+  "name": "نظام إدارة العقارات - AQAR",
+  "description": "نظام شامل لإدارة العقارات والمباني والعقود باستخدام Laravel و Filament",
+  "keywords": ["laravel", "filament", "property-management", "arabic"],
+  "website": "https://github.com/albarqi19/AQAR",
+  "repository": "https://github.com/albarqi19/AQAR.git",
+  "success_url": "/admin",
+  "scripts": {
+    "postdeploy": "php artisan migrate --force && php artisan key:generate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
+  },
+  "env": {
+    "APP_NAME": {
+      "description": "اسم التطبيق",
+      "value": "نظام إدارة العقارات"
+    },
+    "APP_ENV": {
+      "description": "بيئة التطبيق",
+      "value": "production"
+    },
+    "APP_DEBUG": {
+      "description": "وضع التطوير",
+      "value": "false"
+    },
+    "APP_KEY": {
+      "description": "مفتاح التطبيق - سيتم إنشاؤه تلقائياً",
+      "generator": "secret"
+    },
+    "APP_LOCALE": {
+      "description": "لغة التطبيق",
+      "value": "ar"
+    },
+    "LOG_LEVEL": {
+      "description": "مستوى السجلات",
+      "value": "error"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
+  "addons": ["jawsdb:kitefin"],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
