@@ -6,7 +6,7 @@
   "repository": "https://github.com/albarqi19/AQAR.git",
   "success_url": "/admin",
   "scripts": {
-    "postdeploy": "php artisan migrate --force && php artisan key:generate --force"
+    "postdeploy": "php artisan key:generate --force && php artisan migrate --force"
   },
   "env": {
     "APP_NAME": {
@@ -40,7 +40,7 @@
       "size": "eco"
     }
   },
-  "addons": ["jawsdb:kitefin"],
+  "addons": ["heroku-postgresql:essential-0"],
   "buildpacks": [
     {
       "url": "heroku/php"
