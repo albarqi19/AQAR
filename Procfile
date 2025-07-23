@@ -1,2 +1,2 @@
-web: bash start-web.sh
+web: bash force-apache.sh
 release: bash setup.sh

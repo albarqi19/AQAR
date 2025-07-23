@@ -4,9 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "build:simple": "echo 'تم تخطي بناء الأصول'",
         "dev": "vite",
-        "start": "bash start-web.sh"
+        "start": "bash force-apache.sh"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
