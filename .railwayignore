@@ -13,6 +13,7 @@ bootstrap/cache
 Dockerfile*
 docker-compose*
 .dockerignore
+nixpacks.toml
 
 # منع استخدام ملفات إعداد أخرى
 .platform.app.yaml
