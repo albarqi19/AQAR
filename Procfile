@@ -1,2 +1,2 @@
-web: bash emergency-start.sh
-release: bash fix-key.sh && bash setup.sh
+web: bash full-debug.sh
+release: echo "تم تخطي release commands"

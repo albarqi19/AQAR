@@ -22,8 +22,8 @@
       "value": "false"
     },
     "APP_KEY": {
-      "description": "مفتاح التطبيق - سيتم إنشاؤه تلقائياً",
-      "generator": "secret"
+      "description": "مفتاح التطبيق",
+      "value": "base64:1jJ7lx/yprzypdaIzSD6nk1GaImlQuKx4QE2+TqQT2Q="
     },
     "APP_LOCALE": {
       "description": "لغة التطبيق",
