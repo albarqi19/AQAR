@@ -11,6 +11,12 @@ if (empty($_ENV['APP_KEY']) || $_ENV['APP_KEY'] === 'base64:GENERATED_KEY_WILL_B
     putenv('APP_KEY=base64:1jJ7lx/yprzypdaIzSD6nk1GaImlQuKx4QE2+TqQT2Q=');
 }
 
+// إصلاح إعدادات قاعدة البيانات
+$_ENV['DB_CONNECTION'] = 'sqlite';
+$_ENV['DB_DATABASE'] = '/app/database/database.sqlite';
+putenv('DB_CONNECTION=sqlite');
+putenv('DB_DATABASE=/app/database/database.sqlite');
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;

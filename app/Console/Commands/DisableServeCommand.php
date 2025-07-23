@@ -19,7 +19,14 @@ class DisableServeCommand extends Command
         $_ENV['APP_KEY'] = $appKey;
         putenv('APP_KEY=' . $appKey);
         
+        // تعيين إعدادات قاعدة البيانات لـ SQLite
+        $_ENV['DB_CONNECTION'] = 'sqlite';
+        $_ENV['DB_DATABASE'] = '/app/database/database.sqlite';
+        putenv('DB_CONNECTION=sqlite');
+        putenv('DB_DATABASE=/app/database/database.sqlite');
+        
         $this->info('🔑 تم تعيين APP_KEY: ' . substr($appKey, 0, 20) . '...');
+        $this->info('🗄️ تم تعيين قاعدة البيانات: SQLite');
         
         // إنشاء ملف .env مع APP_KEY
         $envContent = "APP_NAME=\"نظام إدارة العقارات\"\n";
@@ -32,9 +39,11 @@ class DisableServeCommand extends Command
         $envContent .= "LOG_LEVEL=error\n";
         $envContent .= "CACHE_STORE=file\n";
         $envContent .= "SESSION_DRIVER=file\n";
+        $envContent .= "SESSION_LIFETIME=120\n";
+        $envContent .= "QUEUE_CONNECTION=database\n";
         
         file_put_contents('.env', $envContent);
-        $this->info('📄 تم إنشاء ملف .env مع APP_KEY');
+        $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات SQLite');
         
         // إنشاء قاعدة البيانات
         if (!is_dir('database')) {
@@ -44,6 +53,15 @@ class DisableServeCommand extends Command
             touch('database/database.sqlite');
         }
         $this->info('🗄️ تم إعداد قاعدة البيانات');
+        
+        // تشغيل migrations لإنشاء الجداول
+        $this->info('🔄 تشغيل migrations...');
+        try {
+            \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+            $this->info('✅ تم تشغيل migrations بنجاح');
+        } catch (\Exception $e) {
+            $this->warn('⚠️ تخطي migrations: ' . $e->getMessage());
+        }
         
         $this->info('🌐 تشغيل الخادم...');
         
