@@ -4,7 +4,7 @@
   "keywords": ["laravel", "filament", "property-management", "arabic"],
   "website": "https://github.com/albarqi19/AQAR",
   "repository": "https://github.com/albarqi19/AQAR.git",
-  "success_url": "/admin",
+  "success_url": "/",
   "scripts": {
     "postdeploy": "bash setup.sh"
   },

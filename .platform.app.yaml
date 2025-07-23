@@ -1,0 +1,14 @@
+# Platform.sh configuration
+name: property-management
+type: php:8.3
+
+web:
+    commands:
+        start: "vendor/bin/heroku-php-apache2 -p $PORT public/"
+
+disk: 1024
+
+variables:
+    env:
+        APP_ENV: 'production'
+        APP_DEBUG: 'false'

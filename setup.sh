@@ -1,6 +1,16 @@
 #!/bin/bash
 
-echo "🚀 بدء تجهيز التطبيق..."
+echo "🚀 بدء تجهيز نظام إدارة العقارات..."
+
+# التأكد من وجود مجلدات مهمة
+mkdir -p storage/logs
+mkdir -p storage/framework/cache
+mkdir -p storage/framework/sessions
+mkdir -p storage/framework/views
+mkdir -p bootstrap/cache
+
+# ضبط الصلاحيات
+chmod -R 755 storage bootstrap/cache
 
 # توليد مفتاح التطبيق إذا لم يكن موجوداً
 if [ -z "$APP_KEY" ]; then
@@ -11,35 +21,14 @@ fi
 
 # تنظيف الكاش
 echo "🧹 تنظيف الكاش..."
-php artisan config:clear
-php artisan cache:clear
-php artisan route:clear
-php artisan view:clear
+php artisan config:clear --quiet
+php artisan cache:clear --quiet
+php artisan route:clear --quiet
+php artisan view:clear --quiet
 
 # تشغيل Migration
-echo "🗄️ تشغيل قاعدة البيانات..."
-php artisan migrate --force
-
-# إنشاء مستخدم ادمن تجريبي
-echo "👤 إنشاء مستخدم تجريبي..."
-php artisan tinker --execute="
-try {
-    if (!\App\Models\User::where('email', 'admin@test.com')->exists()) {
-        \App\Models\User::create([
-            'name' => 'مدير النظام',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now()
-        ]);
-        echo 'تم إنشاء المستخدم: admin@test.com / password';
-    } else {
-        echo 'المستخدم موجود بالفعل';
-    }
-} catch (\Exception \$e) {
-    echo 'خطأ في إنشاء المستخدم: ' . \$e->getMessage();
-}
-"
+echo "🗄️ إعداد قاعدة البيانات..."
+php artisan migrate --force --quiet
 
 echo "✅ تم تجهيز التطبيق بنجاح!"
-echo "🌐 يمكنك الآن زيارة /admin"
-echo "👤 البيانات: admin@test.com / password"
+echo "🌐 التطبيق جاهز للاستخدام"

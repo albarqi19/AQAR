@@ -34,4 +34,4 @@ RUN chmod -R 755 storage bootstrap/cache
 
 # تشغيل الخادم
 EXPOSE $PORT
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+CMD vendor/bin/heroku-php-apache2 -p $PORT public/
