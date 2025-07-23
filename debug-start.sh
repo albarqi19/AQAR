@@ -13,8 +13,8 @@ ls -la
 echo "📄 محتوى Procfile:"
 cat Procfile
 
-echo "🔧 فحص vendor/bin:"
-ls -la vendor/bin/ | grep heroku
+echo "🔧 فحص PHP:"
+php -v
 
-echo "🚀 تشغيل Apache..."
-vendor/bin/heroku-php-apache2 -p $PORT public/
+echo "🌐 تشغيل PHP Built-in Server على المنفذ: ${PORT:-8000}"
+exec php -S 0.0.0.0:${PORT:-8000} -t public

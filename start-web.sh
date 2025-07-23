@@ -8,7 +8,7 @@ if [ -z "$PORT" ]; then
     echo "⚠️  تم ضبط PORT على 8000"
 fi
 
-echo "🌐 تشغيل Apache على المنفذ: $PORT"
+echo "🌐 تشغيل PHP Server على المنفذ: $PORT"
 
-# تشغيل Apache بدلاً من artisan serve
-exec vendor/bin/heroku-php-apache2 -p $PORT public/
+# تشغيل PHP Built-in Server بدلاً من Apache
+exec php -S 0.0.0.0:$PORT -t public

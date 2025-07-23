@@ -1,2 +1,2 @@
-web: vendor/bin/heroku-php-apache2 -p $PORT public/
+web: php -S 0.0.0.0:$PORT -t public
 release: bash setup.sh
