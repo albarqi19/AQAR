@@ -75,9 +75,6 @@ class DisableServeCommand extends Command
         file_put_contents('.env', $envContent);
         $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات MySQL');
         
-        file_put_contents('.env', $envContent);
-        $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات SQLite');
-        
         // التحقق من اتصال قاعدة البيانات
         $this->info('🗄️ التحقق من اتصال MySQL...');
         

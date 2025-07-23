@@ -1,2 +1,1 @@
-web: bash full-debug.sh
-release: echo "تم تخطي release commands"
+web: php -S 0.0.0.0:$PORT -t public
