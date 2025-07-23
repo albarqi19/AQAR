@@ -1,8 +1,25 @@
 <?php
 
-namespace App\Console\Commands;
-
-use Illuminate\Console\Command;
+namespace App\Console\Commands        // إنشاء ملف .env مع APP_KEY
+        $envContent = "APP_NAME=\"نظام إدارة العقارات\"\n";
+        $envContent .= "APP_ENV=production\n";
+        $envContent .= "APP_KEY={$appKey}\n";
+        $envContent .= "APP_DEBUG=false\n";
+        $envContent .= "APP_LOCALE=ar\n";
+        $envContent .= "DB_CONNECTION=mysql\n";
+        $envContent .= "DB_HOST=" . $_ENV['DB_HOST'] . "\n";
+        $envContent .= "DB_PORT=" . $_ENV['DB_PORT'] . "\n";
+        $envContent .= "DB_DATABASE=" . $_ENV['DB_DATABASE'] . "\n";
+        $envContent .= "DB_USERNAME=" . $_ENV['DB_USERNAME'] . "\n";
+        $envContent .= "DB_PASSWORD=" . $_ENV['DB_PASSWORD'] . "\n";
+        $envContent .= "LOG_LEVEL=error\n";
+        $envContent .= "CACHE_STORE=file\n";
+        $envContent .= "SESSION_DRIVER=file\n";
+        $envContent .= "SESSION_LIFETIME=120\n";
+        $envContent .= "QUEUE_CONNECTION=database\n";
+        
+        file_put_contents('.env', $envContent);
+        $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات MySQL');ate\Console\Command;
 
 class DisableServeCommand extends Command
 {
@@ -19,14 +36,23 @@ class DisableServeCommand extends Command
         $_ENV['APP_KEY'] = $appKey;
         putenv('APP_KEY=' . $appKey);
         
-        // تعيين إعدادات قاعدة البيانات لـ SQLite
-        $_ENV['DB_CONNECTION'] = 'sqlite';
-        $_ENV['DB_DATABASE'] = '/app/database/database.sqlite';
-        putenv('DB_CONNECTION=sqlite');
-        putenv('DB_DATABASE=/app/database/database.sqlite');
+        // تعيين إعدادات قاعدة البيانات لـ MySQL
+        $_ENV['DB_CONNECTION'] = 'mysql';
+        $_ENV['DB_HOST'] = $_ENV['MYSQLHOST'] ?? $_ENV['DB_HOST'] ?? 'localhost';
+        $_ENV['DB_PORT'] = $_ENV['MYSQLPORT'] ?? $_ENV['DB_PORT'] ?? '3306';
+        $_ENV['DB_DATABASE'] = $_ENV['MYSQLDATABASE'] ?? $_ENV['DB_DATABASE'] ?? 'property_management';
+        $_ENV['DB_USERNAME'] = $_ENV['MYSQLUSER'] ?? $_ENV['DB_USERNAME'] ?? 'root';
+        $_ENV['DB_PASSWORD'] = $_ENV['MYSQLPASSWORD'] ?? $_ENV['DB_PASSWORD'] ?? '';
+        
+        putenv('DB_CONNECTION=mysql');
+        putenv('DB_HOST=' . $_ENV['DB_HOST']);
+        putenv('DB_PORT=' . $_ENV['DB_PORT']);
+        putenv('DB_DATABASE=' . $_ENV['DB_DATABASE']);
+        putenv('DB_USERNAME=' . $_ENV['DB_USERNAME']);
+        putenv('DB_PASSWORD=' . $_ENV['DB_PASSWORD']);
         
         $this->info('🔑 تم تعيين APP_KEY: ' . substr($appKey, 0, 20) . '...');
-        $this->info('🗄️ تم تعيين قاعدة البيانات: SQLite');
+        $this->info('🗄️ تم تعيين قاعدة البيانات: MySQL (' . $_ENV['DB_HOST'] . ':' . $_ENV['DB_PORT'] . ')');
         
         // إنشاء ملف .env مع APP_KEY
         $envContent = "APP_NAME=\"نظام إدارة العقارات\"\n";
@@ -34,8 +60,12 @@ class DisableServeCommand extends Command
         $envContent .= "APP_KEY={$appKey}\n";
         $envContent .= "APP_DEBUG=false\n";
         $envContent .= "APP_LOCALE=ar\n";
-        $envContent .= "DB_CONNECTION=sqlite\n";
-        $envContent .= "DB_DATABASE=/app/database/database.sqlite\n";
+        $envContent .= "DB_CONNECTION=mysql\n";
+        $envContent .= "DB_HOST=" . $_ENV['DB_HOST'] . "\n";
+        $envContent .= "DB_PORT=" . $_ENV['DB_PORT'] . "\n";
+        $envContent .= "DB_DATABASE=" . $_ENV['DB_DATABASE'] . "\n";
+        $envContent .= "DB_USERNAME=" . $_ENV['DB_USERNAME'] . "\n";
+        $envContent .= "DB_PASSWORD=" . $_ENV['DB_PASSWORD'] . "\n";
         $envContent .= "LOG_LEVEL=error\n";
         $envContent .= "CACHE_STORE=file\n";
         $envContent .= "SESSION_DRIVER=file\n";
@@ -43,16 +73,13 @@ class DisableServeCommand extends Command
         $envContent .= "QUEUE_CONNECTION=database\n";
         
         file_put_contents('.env', $envContent);
+        $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات MySQL');
+        
+        file_put_contents('.env', $envContent);
         $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات SQLite');
         
-        // إنشاء قاعدة البيانات
-        if (!is_dir('database')) {
-            mkdir('database', 0755, true);
-        }
-        if (!file_exists('database/database.sqlite')) {
-            touch('database/database.sqlite');
-        }
-        $this->info('🗄️ تم إعداد قاعدة البيانات');
+        // التحقق من اتصال قاعدة البيانات
+        $this->info('🗄️ التحقق من اتصال MySQL...');
         
         // تشغيل migrations لإنشاء الجداول
         $this->info('🔄 تشغيل migrations...');
