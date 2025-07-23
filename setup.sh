@@ -5,9 +5,8 @@ echo "🚀 بدء تجهيز التطبيق..."
 # توليد مفتاح التطبيق إذا لم يكن موجوداً
 if [ -z "$APP_KEY" ]; then
     echo "📝 توليد مفتاح التطبيق..."
-    php artisan key:generate --force --show > /tmp/app_key.txt
-    export APP_KEY=$(cat /tmp/app_key.txt)
-    echo "✅ تم توليد المفتاح: $APP_KEY"
+    php artisan key:generate --force
+    echo "✅ تم توليد المفتاح"
 fi
 
 # تنظيف الكاش
@@ -24,16 +23,20 @@ php artisan migrate --force
 # إنشاء مستخدم ادمن تجريبي
 echo "👤 إنشاء مستخدم تجريبي..."
 php artisan tinker --execute="
-if (!\App\Models\User::where('email', 'admin@test.com')->exists()) {
-    \App\Models\User::create([
-        'name' => 'مدير النظام',
-        'email' => 'admin@test.com',
-        'password' => bcrypt('password'),
-        'email_verified_at' => now()
-    ]);
-    echo 'تم إنشاء المستخدم: admin@test.com / password';
-} else {
-    echo 'المستخدم موجود بالفعل';
+try {
+    if (!\App\Models\User::where('email', 'admin@test.com')->exists()) {
+        \App\Models\User::create([
+            'name' => 'مدير النظام',
+            'email' => 'admin@test.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now()
+        ]);
+        echo 'تم إنشاء المستخدم: admin@test.com / password';
+    } else {
+        echo 'المستخدم موجود بالفعل';
+    }
+} catch (\Exception \$e) {
+    echo 'خطأ في إنشاء المستخدم: ' . \$e->getMessage();
 }
 "
 
