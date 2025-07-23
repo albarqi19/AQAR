@@ -17,15 +17,16 @@ class DisableServeCommand extends Command
         
         // تشغيل PHP Built-in Server مباشرة
         $host = '0.0.0.0';
-        $port = $_ENV['PORT'] ?? 8000;
+        $port = $_ENV['PORT'] ?? $_SERVER['PORT'] ?? getenv('PORT') ?? 8000;
         $docroot = 'public';
         
         $command = "php -S {$host}:{$port} -t {$docroot}";
         
         $this->info("🚀 تشغيل: {$command}");
+        $this->info("🔗 المنفذ المستخدم: {$port}");
         
         // استبدال العملية الحالية بـ PHP Server
-        exec($command);
+        passthru($command);
         
         return 0;
     }

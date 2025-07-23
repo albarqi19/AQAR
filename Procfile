@@ -1,2 +1,2 @@
-web: php -S 0.0.0.0:$PORT -t public
+web: bash debug-port.sh
 release: bash fix-key.sh && bash setup.sh
