@@ -32,6 +32,10 @@
     "LOG_LEVEL": {
       "description": "مستوى السجلات",
       "value": "error"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "عدد العمليات المتزامنة",
+      "value": "1"
     }
   },
   "formation": {

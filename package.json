@@ -5,7 +5,8 @@
     "scripts": {
         "build": "vite build",
         "build:simple": "echo 'تم تخطي بناء الأصول'",
-        "dev": "vite"
+        "dev": "vite",
+        "start": "bash start-web.sh"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
