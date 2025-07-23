@@ -5,6 +5,12 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// إصلاح فوري لـ APP_KEY
+if (empty($_ENV['APP_KEY']) || $_ENV['APP_KEY'] === 'base64:GENERATED_KEY_WILL_BE_SET_AUTOMATICALLY') {
+    $_ENV['APP_KEY'] = 'base64:1jJ7lx/yprzypdaIzSD6nk1GaImlQuKx4QE2+TqQT2Q=';
+    putenv('APP_KEY=base64:1jJ7lx/yprzypdaIzSD6nk1GaImlQuKx4QE2+TqQT2Q=');
+}
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
