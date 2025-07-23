@@ -1,0 +1,45 @@
+/* تخصيص بسيط لجعل خلفية Filament تطابق الصفحة الرئيسية */
+
+/* خلفية عامة للجسم */
+[data-theme="dark"] .fi-body,
+[data-theme="dark"] body {
+    background-color: #1a1a1a !important;
+}
+
+/* خلفية الشريط الجانبي */
+[data-theme="dark"] .fi-sidebar {
+    background-color: #1a1a1a !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* خلفية الهيدر */
+[data-theme="dark"] .fi-header {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* خلفية المحتوى الرئيسي */
+[data-theme="dark"] .fi-main {
+    background-color: #1a1a1a !important;
+}
+
+/* خلفية الصفحة الكاملة */
+[data-theme="dark"] .fi-layout {
+    background-color: #1a1a1a !important;
+}
+
+/* خلفية container الرئيسي */
+[data-theme="dark"] .fi-layout-container {
+    background-color: #1a1a1a !important;
+}
+
+/* لضمان عدم تداخل ألوان أخرى */
+[data-theme="dark"] .fi-topbar {
+    background-color: #1a1a1a !important;
+}
+
+/* خلفية كامل الصفحة */
+[data-theme="dark"] html,
+[data-theme="dark"] .fi-content {
+    background-color: #1a1a1a !important;
+}

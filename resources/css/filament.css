@@ -1,0 +1,191 @@
+/* Google Fonts - Cairo for Arabic */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+    --primary-color: #7fb069;
+    --primary-dark: #6fa055;
+    --background-dark: #1a1a1a;
+    --surface-dark: #2a2a2a;
+    --text-light: #ffffff;
+    --text-muted: #cccccc;
+}
+
+/* Global font family */
+body, .fi-body {
+    font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Dark background for sidebar */
+.fi-sidebar {
+    background: var(--background-dark) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar navigation styling */
+.fi-sidebar-nav {
+    background: transparent !important;
+}
+
+.fi-sidebar-nav-item {
+    border-radius: 12px !important;
+    margin: 4px 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.fi-sidebar-nav-item:hover {
+    background: rgba(127, 176, 105, 0.1) !important;
+    transform: translateX(4px) !important;
+}
+
+.fi-sidebar-nav-item[aria-current="page"] {
+    background: rgba(127, 176, 105, 0.15) !important;
+    border-left: 3px solid var(--primary-color) !important;
+}
+
+/* Header styling */
+.fi-header {
+    background: var(--background-dark) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Main content area */
+.fi-main {
+    background: #fafafa !important;
+}
+
+/* Cards and panels */
+.fi-section, .fi-card, .fi-widget {
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+}
+
+.fi-card:hover, .fi-widget:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Stats widgets styling */
+.fi-stats-card {
+    background: linear-gradient(135deg, white 0%, #f8fffe 100%) !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(127, 176, 105, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.fi-stats-card:hover {
+    border-color: rgba(127, 176, 105, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(127, 176, 105, 0.1) !important;
+}
+
+/* Buttons */
+.fi-btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.fi-btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(127, 176, 105, 0.3) !important;
+}
+
+/* Forms */
+.fi-input, .fi-select, .fi-textarea {
+    border-radius: 12px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.fi-input:focus, .fi-select:focus, .fi-textarea:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(127, 176, 105, 0.1) !important;
+}
+
+/* Tables */
+.fi-table {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.fi-table-header {
+    background: #f8f9fa !important;
+    font-weight: 600 !important;
+}
+
+.fi-table-row:hover {
+    background: rgba(127, 176, 105, 0.02) !important;
+}
+
+/* Brand logo styling */
+.fi-logo {
+    max-height: 40px !important;
+    width: auto !important;
+    filter: brightness(1.1) !important;
+}
+
+/* User menu */
+.fi-user-menu {
+    background: var(--surface-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+}
+
+/* Notifications */
+.fi-notification {
+    border-radius: 12px !important;
+    border-left: 4px solid var(--primary-color) !important;
+}
+
+/* Charts and data visualization */
+.fi-chart {
+    border-radius: 16px !important;
+    background: white !important;
+}
+
+/* Arabic text direction support */
+[dir="rtl"] {
+    .fi-sidebar-nav-item:hover {
+        transform: translateX(-4px) !important;
+    }
+    
+    .fi-sidebar-nav-item[aria-current="page"] {
+        border-right: 3px solid var(--primary-color) !important;
+        border-left: none !important;
+    }
+}
+
+/* Custom scrollbar for sidebar */
+.fi-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fi-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.fi-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.fi-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fi-card, .fi-widget {
+        border-radius: 12px !important;
+    }
+    
+    .fi-stats-card {
+        border-radius: 12px !important;
+    }
+}

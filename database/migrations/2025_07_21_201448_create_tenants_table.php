@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('tenants', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->comment('اسم المستأجر');
+            $table->string('company_name')->nullable()->comment('اسم الشركة');
+            $table->string('commercial_registration')->nullable()->comment('السجل التجاري');
+            $table->string('phone')->comment('رقم الهاتف');
+            $table->string('email')->nullable()->comment('البريد الإلكتروني');
+            $table->string('national_id')->nullable()->comment('رقم الهوية');
+            $table->text('address')->nullable()->comment('العنوان');
+            $table->string('emergency_contact')->nullable()->comment('جهة الاتصال في حالة الطوارئ');
+            $table->string('emergency_phone')->nullable()->comment('رقم هاتف الطوارئ');
+            $table->json('documents')->nullable()->comment('الوثائق المرفقة');
+            $table->boolean('is_active')->default(true)->comment('هل المستأجر نشط');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('tenants');
+    }
+};
