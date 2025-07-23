@@ -13,8 +13,17 @@ class DisableServeCommand extends Command
     {
         $this->error('🚫 تم تعطيل أمر artisan serve');
         $this->info('✅ يتم استخدام Apache للخادم');
-        $this->info('🌐 الرجاء استخدام vendor/bin/heroku-php-apache2');
+        $this->info('🌐 تشغيل Apache...');
         
-        return 1; // خطأ لمنع التشغيل
+        // تشغيل Apache مباشرة
+        $port = $_ENV['PORT'] ?? 8000;
+        $command = "vendor/bin/heroku-php-apache2 -p {$port} public/";
+        
+        $this->info("🚀 تشغيل: {$command}");
+        
+        // استبدال العملية الحالية بـ Apache
+        exec($command);
+        
+        return 0;
     }
 }

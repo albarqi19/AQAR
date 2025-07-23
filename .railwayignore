@@ -8,3 +8,7 @@ storage/framework/sessions
 storage/framework/views
 bootstrap/cache
 *.log
+debug-start.sh
+start-web.sh
+start.sh
+force-apache.sh
