@@ -1,25 +1,8 @@
 <?php
 
-namespace App\Console\Commands        // إنشاء ملف .env مع APP_KEY
-        $envContent = "APP_NAME=\"نظام إدارة العقارات\"\n";
-        $envContent .= "APP_ENV=production\n";
-        $envContent .= "APP_KEY={$appKey}\n";
-        $envContent .= "APP_DEBUG=false\n";
-        $envContent .= "APP_LOCALE=ar\n";
-        $envContent .= "DB_CONNECTION=mysql\n";
-        $envContent .= "DB_HOST=" . $_ENV['DB_HOST'] . "\n";
-        $envContent .= "DB_PORT=" . $_ENV['DB_PORT'] . "\n";
-        $envContent .= "DB_DATABASE=" . $_ENV['DB_DATABASE'] . "\n";
-        $envContent .= "DB_USERNAME=" . $_ENV['DB_USERNAME'] . "\n";
-        $envContent .= "DB_PASSWORD=" . $_ENV['DB_PASSWORD'] . "\n";
-        $envContent .= "LOG_LEVEL=error\n";
-        $envContent .= "CACHE_STORE=file\n";
-        $envContent .= "SESSION_DRIVER=file\n";
-        $envContent .= "SESSION_LIFETIME=120\n";
-        $envContent .= "QUEUE_CONNECTION=database\n";
-        
-        file_put_contents('.env', $envContent);
-        $this->info('📄 تم إنشاء ملف .env مع APP_KEY وإعدادات MySQL');ate\Console\Command;
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
 
 class DisableServeCommand extends Command
 {
