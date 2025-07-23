@@ -6,7 +6,7 @@
   "repository": "https://github.com/albarqi19/AQAR.git",
   "success_url": "/admin",
   "scripts": {
-    "postdeploy": "php artisan migrate --force && php artisan key:generate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
+    "postdeploy": "php artisan migrate --force && php artisan key:generate --force"
   },
   "env": {
     "APP_NAME": {
